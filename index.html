@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Tracker Spese</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>💸 Tracker Spese</h1>
+
+    <input type="text" id="descrizione" placeholder="Descrizione">
+    <input type="number" id="importo" placeholder="Importo (€)">
+    <button onclick="aggiungiSpesa()">Aggiungi</button>
+
+    <ul id="listaSpese"></ul>
+
+    <div class="totale">
+        Totale: € <span id="totale">0</span>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
