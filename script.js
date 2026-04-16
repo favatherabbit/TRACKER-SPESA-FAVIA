@@ -1,5 +1,11 @@
 let spese = JSON.parse(localStorage.getItem("spese")) || [];
 
+let filtri = {
+    descrizione: "",
+    min: null,
+    max: null
+};
+
 function salvaDati() {
     localStorage.setItem("spese", JSON.stringify(spese));
 }
@@ -27,6 +33,24 @@ function eliminaSpesa(index) {
     aggiornaUI();
 }
 
+function applicaFiltri() {
+    filtri.descrizione = document.getElementById("filtroDescrizione").value.toLowerCase();
+    filtri.min = parseFloat(document.getElementById("filtroMin").value) || null;
+    filtri.max = parseFloat(document.getElementById("filtroMax").value) || null;
+
+    aggiornaUI();
+}
+
+function resetFiltri() {
+    filtri = { descrizione: "", min: null, max: null };
+
+    document.getElementById("filtroDescrizione").value = "";
+    document.getElementById("filtroMin").value = "";
+    document.getElementById("filtroMax").value = "";
+
+    aggiornaUI();
+}
+
 function aggiornaUI() {
     const lista = document.getElementById("listaSpese");
     lista.innerHTML = "";
@@ -34,12 +58,23 @@ function aggiornaUI() {
     let totale = 0;
 
     spese.forEach((spesa, index) => {
+
+        // FILTRI
+        if (
+            (filtri.descrizione && !spesa.descrizione.toLowerCase().includes(filtri.descrizione)) ||
+            (filtri.min !== null && spesa.importo < filtri.min) ||
+            (filtri.max !== null && spesa.importo > filtri.max)
+        ) {
+            return;
+        }
+
         totale += spesa.importo;
 
         const li = document.createElement("li");
         li.innerHTML = `
-            ${spesa.descrizione} - €${spesa.importo.toFixed(2)}
-            <span class="delete" onclick="eliminaSpesa(${index})">❌</span>
+            <span>${spesa.descrizione}</span>
+            <span>€${spesa.importo.toFixed(2)} 
+            <span class="delete" onclick="eliminaSpesa(${index})">❌</span></span>
         `;
         lista.appendChild(li);
     });

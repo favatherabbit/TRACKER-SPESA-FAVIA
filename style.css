@@ -1,60 +1,105 @@
-body {
-    font-family: Arial;
-    background: #f4f6f9;
+* {
+    box-sizing: border-box;
     margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
 }
 
-.container {
-    width: 400px;
-    margin: 40px auto;
+body {
+    background: #eef2f7;
+}
+
+.app {
+    max-width: 900px;
+    margin: 30px auto;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    color: #333;
+}
+
+header p {
+    color: #777;
+}
+
+.dashboard {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.card {
     background: white;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-h1 {
-    text-align: center;
+.card h2 {
+    margin-bottom: 10px;
 }
 
-input, button {
+input {
     width: 100%;
     padding: 10px;
     margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
 }
 
 button {
-    background: #007bff;
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    background: #4CAF50;
     color: white;
     border: none;
+    border-radius: 8px;
     cursor: pointer;
 }
 
 button:hover {
-    background: #0056b3;
+    background: #45a049;
 }
 
-ul {
+.totale-card {
+    text-align: center;
+    font-size: 24px;
+    background: #4CAF50;
+    color: white;
+}
+
+.lista-card ul {
     list-style: none;
-    padding: 0;
+    margin-top: 10px;
 }
 
-li {
+.lista-card li {
     display: flex;
     justify-content: space-between;
-    background: #eee;
+    padding: 10px;
     margin-top: 5px;
-    padding: 8px;
-    border-radius: 5px;
-}
-
-.totale {
-    margin-top: 15px;
-    font-weight: bold;
-    text-align: right;
+    background: #f1f1f1;
+    border-radius: 8px;
 }
 
 .delete {
     color: red;
     cursor: pointer;
+}
+
+.card button {
+    margin-top: 8px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
 }
